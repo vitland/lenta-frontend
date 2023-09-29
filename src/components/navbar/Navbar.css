@@ -1,0 +1,89 @@
+.navbar {
+  background-color: var(--first-color);
+  height: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+}
+main {
+  width: 100%;
+  padding: 20px;
+}
+/* To do */
+.navbar__title {
+  color: #fff;
+  font-weight: 600;
+  margin: 0 auto;
+  font-size: 1.6rem;
+}
+
+.navbar__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: solid 2px var(--border-color);
+  height: 32px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.navbar__profile-name {
+  color: var(--text-color-light);
+  margin: 0;
+  font-size: var(--normal-font-size);
+  padding-right: 6px;
+}
+
+.navbar__icon {
+  font-size: 20px;
+}
+
+.sidebar {
+  background: var(--first-color);
+  position: static;
+  color: #fff;
+  height: 100vh;
+  width: 200px;
+  transition: all 0.5s;
+}
+.top-section {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+/* .logo {
+  font-size: 30px;
+} */
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 10px;
+}
+.link {
+  display: flex;
+  color: #fff;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+.link:hover {
+  background: var(--background-color);
+  /* color: #000; */
+  transition: all 0.5s;
+}
+/* .active {
+  background: var(--first-color-light);
+  color: #000;
+} */
+.icon,
+.link-text {
+  font-size: 20px;
+}
