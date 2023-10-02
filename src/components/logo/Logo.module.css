@@ -1,0 +1,9 @@
+.logo__header {
+  color: #fff;
+  font-weight: 700;
+  margin-left: 15px;
+  padding: 5px;
+  border: solid 2px var(--border-color);
+  cursor: pointer;
+  font-size: var(--normal-font-size);
+}
