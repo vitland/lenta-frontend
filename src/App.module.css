@@ -1,6 +1,6 @@
 .home,
-.reports,
-.products {
+.forecast,
+.statistics {
   display: flex;
   height: 90vh;
   align-items: center;

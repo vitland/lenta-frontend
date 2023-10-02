@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import "./logo.css"
+import styles from "./logo.module.css"
 
 function Logo() {
   return (
-    <Link to="#" className="logo__header">
+    <Link to="#" className={styles.logo__header}>
       Лента
     </Link>
   )

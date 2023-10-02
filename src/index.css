@@ -27,6 +27,7 @@ code {
   --text-color: black;
   --text-color-light: #fff;
   --border-color: hsl(228, 99%, 98%);
+  --border-color-hover: #568ede;
   --body-color: #fff;
   --container-color: #fff;
   --background-color: #3363ab;

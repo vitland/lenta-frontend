@@ -1,8 +1,8 @@
-import React from "react"
+import styles from "../App.module.css"
 
 function Statistics() {
   return (
-    <div className="reports">
+    <div className={styles.statistics}>
       <h1>Статистика</h1>
     </div>
   )
