@@ -23,7 +23,7 @@ export type FiltersState = {
   groupsSelected: string[]
   categoriesSelected: string[]
   subcategoriesSelected: string[]
-  skuSelected: string[]
+  skusSelected: string[]
   status: string
   error: string | undefined
 }
