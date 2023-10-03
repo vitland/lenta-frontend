@@ -8,7 +8,7 @@ const initialState: FiltersState = {
   groupsSelected: [],
   categoriesSelected: [],
   subcategoriesSelected: [],
-  skuSelected: [],
+  skusSelected: [],
   status: "",
   error: "",
 }
@@ -30,6 +30,10 @@ const filterSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
+    changeShops: (state, action) => {
+      const shops: string[] = action.payload.map((i: selectedValues) => i.value)
+      state.shopsSelected = shops
+    },
     changeGroups: (state, action) => {
       const groups: string[] = action.payload.map(
         (i: selectedValues) => i.value,
@@ -47,6 +51,9 @@ const filterSlice = createSlice({
         (i: selectedValues) => i.value,
       )
       state.subcategoriesSelected = subcategories
+    },
+    changeSkus: (state, action) => {
+      state.skusSelected = action.payload
     },
   },
   extraReducers(builder) {
@@ -75,8 +82,13 @@ const filterSlice = createSlice({
 })
 
 export default filterSlice.reducer
-export const { changeCategories, changeSubcategories, changeGroups } =
-  filterSlice.actions
+export const {
+  changeShops,
+  changeCategories,
+  changeSubcategories,
+  changeGroups,
+  changeSkus,
+} = filterSlice.actions
 
 export const selectedShops = (state: RootState) => state.filters.shopsSelected
 
@@ -88,4 +100,4 @@ export const selectedCategories = (state: RootState) =>
 export const selectedSubcategories = (state: RootState) =>
   state.filters.subcategoriesSelected
 
-export const selectedSkus = (state: RootState) => state.filters.skuSelected
+export const selectedSkus = (state: RootState) => state.filters.skusSelected
