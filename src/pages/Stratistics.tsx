@@ -1,11 +1,7 @@
-import styles from "../App.module.css"
+import Header from "../components/header/Header"
 
 function Statistics() {
-  return (
-    <div className={styles.statistics}>
-      <h1>Статистика</h1>
-    </div>
-  )
+  return <Header title="Статистика" />
 }
 
 export default Statistics

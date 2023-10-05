@@ -18,19 +18,18 @@ code {
   --header-height: 3.5rem;
 
   /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  --first-color: #003c96;
+  --first-color: #FAFAFA;
   --first-color-alt: black;
   --first-color-light: #e1f5ff;
   --first-color-lighten: #fff;
   --title-color: #003c96;
-  --text-color: black;
+  --text-color: #2C2A29;
   --text-color-light: #fff;
   --border-color: hsl(228, 99%, 98%);
   --border-color-hover: #568ede;
   --body-color: #fff;
   --container-color: #fff;
-  --background-color: #3363ab;
+  --background-color: #F9F9F9;
 
   /*========== Typography ==========*/
   --biggest-font-size: 4rem;
@@ -46,12 +45,11 @@ code {
   --font-semi-bold: 600;
 }
 
-h1,
-h2,
+/* h1,
 h3 {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
-}
+} */
 
 a {
   text-decoration: none;

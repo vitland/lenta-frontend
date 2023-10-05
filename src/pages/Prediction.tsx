@@ -17,6 +17,7 @@ import {
   selectedSubcategories,
 } from "../features/filters/fitltersSlice"
 import { fetchForecast } from "../features/forecast/forecastSlice"
+import Header from "../components/header/Header"
 
 function Prediction() {
   const dispatch = useAppDispatch()
@@ -116,74 +117,77 @@ function Prediction() {
   }, [filteredOptions])
 
   return (
-    <section>
-      <form
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault()
-          dispatch(fetchForecast({ shops, skus }))
-        }}
-      >
-        <label htmlFor="shop">
-          Магазины
-          <FilterMultiSelect
-            id={"shop"}
-            options={shopOptions}
-            onChange={(values) => {
-              dispatch(changeShops(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />{" "}
-        </label>
-        <label htmlFor="group">
-          Группа товаров
-          <FilterMultiSelect
-            id={"group"}
-            options={groupOptions}
-            onChange={(values) => {
-              dispatch(changeGroups(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-        </label>
-        <label htmlFor="category">
-          Категория товаров
-          <FilterMultiSelect
-            id={"category"}
-            options={categoryOptions}
-            onChange={(values) => {
-              dispatch(changeCategories(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-        </label>
+    <>
+      <Header title="Прогноз" />
+      <section>
+        <form
+          action=""
+          onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(fetchForecast({ shops, skus }))
+          }}
+        >
+          <label htmlFor="shop">
+            Магазины
+            <FilterMultiSelect
+              id={"shop"}
+              options={shopOptions}
+              onChange={(values) => {
+                dispatch(changeShops(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />{" "}
+          </label>
+          <label htmlFor="group">
+            Группа товаров
+            <FilterMultiSelect
+              id={"group"}
+              options={groupOptions}
+              onChange={(values) => {
+                dispatch(changeGroups(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+          </label>
+          <label htmlFor="category">
+            Категория товаров
+            <FilterMultiSelect
+              id={"category"}
+              options={categoryOptions}
+              onChange={(values) => {
+                dispatch(changeCategories(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+          </label>
 
-        <label htmlFor="subcategory">
-          Подкатегория товаров
-          <FilterMultiSelect
-            id={"subcategory"}
-            options={subcategoryOptions}
-            onChange={(values) => {
-              dispatch(changeSubcategories(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-        </label>
+          <label htmlFor="subcategory">
+            Подкатегория товаров
+            <FilterMultiSelect
+              id={"subcategory"}
+              options={subcategoryOptions}
+              onChange={(values) => {
+                dispatch(changeSubcategories(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+          </label>
 
-        <label htmlFor="sku">
-          Товар
-          <FilterMultiSelect
-            id={"sku"}
-            options={skuOptions}
-            onChange={(values) => {
-              const skus = values.map((i) => i.value)
-              dispatch(changeSkus(skus))
-            }}
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-    </section>
+          <label htmlFor="sku">
+            Товар
+            <FilterMultiSelect
+              id={"sku"}
+              options={skuOptions}
+              onChange={(values) => {
+                const skus = values.map((i) => i.value)
+                dispatch(changeSkus(skus))
+              }}
+            />
+          </label>
+          <button>Submit</button>
+        </form>
+      </section>
+    </>
   )
 }
 
