@@ -14,7 +14,7 @@ main {
   background-color: var(--background-color);
   padding: 20px;
   box-sizing: border-box;
-  max-width: 1550px;
+  max-width: 1800px;
 }
 /* To do */
 .navbar__title {

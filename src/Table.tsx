@@ -80,7 +80,7 @@ const Table = () => {
         muiTablePaperProps={{
           sx: {
             width: "100%",
-            bgcolor: "blue",
+            maxWidth: "1700px",
             boxSizing: "border-box",
           },
         }}
