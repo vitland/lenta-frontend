@@ -22,6 +22,7 @@ import Table from "../Table"
 import useDate from "../hooks/useDate"
 import Header from "../components/header/Header"
 import { data } from "../utils/data"
+import { fakeOptions, fakeShops } from "../utils/data2"
 
 function Forecast() {
   const dispatch = useAppDispatch()
@@ -46,15 +47,17 @@ function Forecast() {
   const subcategories = useAppSelector(selectedSubcategories)
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`${BASE_URL}/api/v1/categories/`),
-      axios.get(`${BASE_URL}/api/v1/shops/`),
-    ]).then(([categoriesData, shopsData]) => {
-      setAllOptions(categoriesData.data.data)
-      setShopOptions(() =>
-        shopsData.data.data.map((shop: ShopsData) => shop.store),
-      )
-    })
+    // Promise.all([
+    //   axios.get(`${BASE_URL}/api/v1/categories/`),
+    //   axios.get(`${BASE_URL}/api/v1/shops/`),
+    // ]).then(([categoriesData, shopsData]) => {
+    //   setAllOptions(categoriesData.data.data)
+    //   setShopOptions(() =>
+    //     shopsData.data.data.map((shop: ShopsData) => shop.store),
+    //   )
+    // })
+    setAllOptions(fakeOptions)
+    setShopOptions(fakeShops)
   }, [])
 
   useEffect(() => {
