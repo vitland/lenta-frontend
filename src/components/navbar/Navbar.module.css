@@ -12,6 +12,8 @@
 main {
   width: 100%;
   padding: 20px;
+  box-sizing: border-box;
+  max-width: 1800px;
 }
 /* To do */
 .navbar__title {

@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { FiltersState, selectedValues } from "../../types"
+import { FiltersState, selectedValues } from "../../types/types"
 import { RootState } from "../../app/store"
 import axios from "axios"
 import { BASE_URL } from "../../utils/consts"

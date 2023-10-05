@@ -3,7 +3,7 @@ import FilterMultiSelect from "../features/forecast/FilterMultiSelect"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { BASE_URL } from "../utils/consts"
 import axios from "axios"
-import { caterogiesResponse } from "../types"
+import { caterogiesResponse } from "../types/types"
 import {
   changeCategories,
   changeGroups,
