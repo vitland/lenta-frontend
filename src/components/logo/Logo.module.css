@@ -1,9 +1,14 @@
+.logo__container {
+  background-color: #fff;
+  width: 158px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
 .logo__header {
-  color: #fff;
-  font-weight: 700;
-  margin-left: 15px;
-  padding: 5px;
-  border: solid 2px var(--border-color);
-  cursor: pointer;
-  font-size: var(--normal-font-size);
+  width: 128px;
+  height: 31px;
 }
