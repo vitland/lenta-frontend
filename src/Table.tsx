@@ -16,7 +16,7 @@ const Table = () => {
         (key) => ({
           header: key,
           accessorFn: (row: any) => row.forecast.sales_units[key],
-          size: 40,
+          size: 100,
         }),
       )
       setForecastCol(columns)
@@ -28,27 +28,27 @@ const Table = () => {
       {
         header: "Магазин",
         accessorKey: "store",
-        size: 50,
+        // size: 200,
       },
       {
         header: "Группа",
         accessorKey: "group",
-        size: 50,
+        // size: 200,
       },
       {
         header: "Категория",
-        accessorKey: "cat",
-        size: 50,
+        accessorKey: "category",
+        // size: 200,
       },
       {
         header: "Подкатегория",
-        accessorKey: "subcat",
-        size: 50,
+        accessorKey: "subcategory",
+        // size: 200,
       },
       {
         header: "Товар",
         accessorKey: "sku",
-        size: 50,
+        // size: 200,
       },
       ...forecastCol,
     ],
@@ -60,7 +60,7 @@ const Table = () => {
       <MaterialReactTable
         columns={columns}
         data={forecasts}
-        enableRowSelection //enable some features
+        enableRowSelection={false} //enable some features
         enableColumnOrdering={false}
         enableColumnFilters={false}
         enablePinning={true}
@@ -69,29 +69,39 @@ const Table = () => {
         // enablePagination={false}
         // enableBottomToolbar={false}
         enableTopToolbar={false}
+        enableSorting={false}
+        enableStickyHeader
         //вся таблица
+        defaultColumn={{
+          minSize: 50, //allow columns to get smaller than default
+          maxSize: 250, //allow columns to get larger than default
+          size: 100, //make columns wider by default
+        }}
         muiTablePaperProps={{
           sx: {
             width: "100%",
             bgcolor: "blue",
+            boxSizing: "border-box",
           },
         }}
         //КОнтейнер с данными
         muiTableContainerProps={{
           sx: {
             width: "100%",
-            bgcolor: "red",
+            maxHeight: "800px",
           },
         }}
         muiTableProps={{
           sx: {
             width: "100%",
             border: "1px solid rgba(81, 81, 81, 1)",
-            bgcolor: "green",
+            tableLayout: "fixed",
           },
         }}
         initialState={{
-          columnPinning: { left: ["store", "group", "cat", "subcat", "sku"] },
+          columnPinning: {
+            left: ["store", "group", "category", "subcategory", "sku"],
+          },
         }}
         localization={MRT_Localization_RU}
       />

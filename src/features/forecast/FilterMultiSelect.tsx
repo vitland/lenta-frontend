@@ -3,7 +3,7 @@ import Select from "react-select"
 type FilterMultiSelectProps = {
   placeholder: string
   options: string[]
-  values?: string[]
+  values?: string[] | null
   onChange: (arg: any) => void
 }
 

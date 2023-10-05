@@ -19,15 +19,15 @@ export const fetchForecast = createAsyncThunk(
     // )
     // console.log(storeParam)
     const response = await axios.get(`${BASE_URL}/api/v1/forecast/`, {
-      params: {
-        // store: "c81e728d9d4c2f636f067f89cc14862c",
-        // product: "f9ee6d53edebe412feb1118b618900c8",
-        // date,
-      },
       // params: {
-      //   store: shops.toString(),
-      //   product: skus.toString(),
+      //   store: "c81e728d9d4c2f636f067f89cc14862c",
+      //   product: "f9ee6d53edebe412feb1118b618900c8",
+      //   // date,
       // },
+      params: {
+        store: shops.toString(),
+        // product: skus.toString(),
+      },
     })
     return response.data
   },
@@ -43,7 +43,11 @@ export const fetchForecast = createAsyncThunk(
 const forecastSlice = createSlice({
   name: "forecast",
   initialState,
-  reducers: {},
+  reducers: {
+    setFakeData: (state, action) => {
+      state.forecastList = action.payload
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchForecast.pending, (state, action) => {
@@ -70,7 +74,7 @@ const forecastSlice = createSlice({
     // })
   },
 })
-
+export const { setFakeData } = forecastSlice.actions
 export const selectAllForecasts = (state: RootState) =>
   state.forecast.forecastList
 

@@ -17,10 +17,11 @@ import {
   selectedSkus,
   selectedSubcategories,
 } from "../features/filters/fitltersSlice"
-import { fetchForecast } from "../features/forecast/forecastSlice"
+import { fetchForecast, setFakeData } from "../features/forecast/forecastSlice"
 import Table from "../Table"
 import useDate from "../hooks/useDate"
 import Header from "../components/header/Header"
+import { data } from "../utils/data"
 
 function Forecast() {
   const dispatch = useAppDispatch()
@@ -35,6 +36,7 @@ function Forecast() {
   const [categoryOptions, setCategoryOptions] = useState<string[]>([])
   const [subcategoryOptions, setSubcategoryOptions] = useState<string[]>([])
   const [skuOptions, setSkuOptions] = useState<string[]>([])
+  const [localSkus, setLocalSkus] = useState<string[]>([])
   //active filters
 
   //TODO: пределать локальные selectedValues, диспатчить их значения в useeffect или также
@@ -42,7 +44,6 @@ function Forecast() {
   const groups = useAppSelector(selectedGroups)
   const categories = useAppSelector(selectedCategories)
   const subcategories = useAppSelector(selectedSubcategories)
-  const skus = useAppSelector(selectedSkus)
 
   useEffect(() => {
     Promise.all([
@@ -156,7 +157,8 @@ function Forecast() {
           action=""
           onSubmit={(e) => {
             e.preventDefault()
-            dispatch(fetchForecast({ skus, shops, date }))
+            dispatch(setFakeData(data))
+            // dispatch(fetchForecast({ skus, shops, date }))
           }}
           className={styles.form}
         >
@@ -164,6 +166,7 @@ function Forecast() {
             <FilterMultiSelect
               placeholder={"ТК"}
               options={shopOptions}
+              values={shops}
               onChange={(values: selectedValues[]) => {
                 dispatch(changeShops(values))
                 dispatch(changeSkus(skuOptions))
@@ -199,16 +202,29 @@ function Forecast() {
             <FilterMultiSelect
               placeholder={"Товар"}
               options={skuOptions}
-              values={skus}
+              values={localSkus}
               onChange={(values: selectedValues[]) => {
                 const skus = values.map((i) => i.value)
+                setLocalSkus(skus)
                 dispatch(changeSkus(skus))
               }}
             />
           </fieldset>
-          <button>Submit</button>
-          <button onClick={() => dispatch(changeGroups([]))}>Clear</button>
+          <button className={styles.btn}>Обновить прогноз</button>
         </form>
+        <button
+          className={styles.btn}
+          onClick={() => {
+            dispatch(changeShops([]))
+            dispatch(changeGroups([]))
+            dispatch(changeCategories([]))
+            dispatch(changeSubcategories([]))
+            dispatch(changeSkus([]))
+            setLocalSkus([])
+          }}
+        >
+          Очистить все
+        </button>
         <Table />
       </section>
     </>

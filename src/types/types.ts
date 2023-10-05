@@ -37,8 +37,8 @@ export type caterogiesResponse = {
 }
 
 export type selectedValues = {
-  value: string[]
-  label: string[]
+  value: string
+  label: string
 }
 
 export type ShopsData = {
