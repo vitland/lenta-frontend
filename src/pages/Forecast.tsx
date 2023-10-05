@@ -20,6 +20,7 @@ import {
 import { fetchForecast } from "../features/forecast/forecastSlice"
 import Table from "../Table"
 import useDate from "../hooks/useDate"
+import Header from "../components/header/Header"
 
 function Forecast() {
   const dispatch = useAppDispatch()
@@ -148,63 +149,66 @@ function Forecast() {
   }, [filteredOptions])
 
   return (
-    <section className={styles.container}>
-      <form
-        action=""
-        onSubmit={(e) => {
-          e.preventDefault()
-          dispatch(fetchForecast({ skus, shops, date }))
-        }}
-        className={styles.form}
-      >
-        <fieldset className={styles.fieldset}>
-          <FilterMultiSelect
-            placeholder={"ТК"}
-            options={shopOptions}
-            onChange={(values: selectedValues[]) => {
-              dispatch(changeShops(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-          <FilterMultiSelect
-            placeholder={"Группа"}
-            values={groups}
-            options={groupOptions}
-            onChange={(values: selectedValues[]) => {
-              dispatch(changeGroups(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-          <FilterMultiSelect
-            placeholder={"Категория"}
-            options={categoryOptions}
-            onChange={(values: selectedValues[]) => {
-              dispatch(changeCategories(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-          <FilterMultiSelect
-            placeholder={"Подкатегория"}
-            options={subcategoryOptions}
-            onChange={(values: selectedValues[]) => {
-              dispatch(changeSubcategories(values))
-              dispatch(changeSkus(skuOptions))
-            }}
-          />
-          <FilterMultiSelect
-            placeholder={"Товар"}
-            options={skuOptions}
-            onChange={(values: selectedValues[]) => {
-              const skus = values.map((i) => i.value)
-              dispatch(changeSkus(skus))
-            }}
-          />
-        </fieldset>
-        <button>Submit</button>
-        <button onClick={() => dispatch(changeGroups([]))}>Clear</button>
-      </form>
-      <Table />
-    </section>
+    <>
+      <Header title="Прогноз" />
+      <section className={styles.container}>
+        <form
+          action=""
+          onSubmit={(e) => {
+            e.preventDefault()
+            dispatch(fetchForecast({ skus, shops, date }))
+          }}
+          className={styles.form}
+        >
+          <fieldset className={styles.fieldset}>
+            <FilterMultiSelect
+              placeholder={"ТК"}
+              options={shopOptions}
+              onChange={(values: selectedValues[]) => {
+                dispatch(changeShops(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+            <FilterMultiSelect
+              placeholder={"Группа"}
+              values={groups}
+              options={groupOptions}
+              onChange={(values: selectedValues[]) => {
+                dispatch(changeGroups(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+            <FilterMultiSelect
+              placeholder={"Категория"}
+              options={categoryOptions}
+              onChange={(values: selectedValues[]) => {
+                dispatch(changeCategories(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+            <FilterMultiSelect
+              placeholder={"Подкатегория"}
+              options={subcategoryOptions}
+              onChange={(values: selectedValues[]) => {
+                dispatch(changeSubcategories(values))
+                dispatch(changeSkus(skuOptions))
+              }}
+            />
+            <FilterMultiSelect
+              placeholder={"Товар"}
+              options={skuOptions}
+              onChange={(values: selectedValues[]) => {
+                const skus = values.map((i) => i.value)
+                dispatch(changeSkus(skus))
+              }}
+            />
+          </fieldset>
+          <button>Submit</button>
+          <button onClick={() => dispatch(changeGroups([]))}>Clear</button>
+        </form>
+        <Table />
+      </section>
+    </>
   )
 }
 
