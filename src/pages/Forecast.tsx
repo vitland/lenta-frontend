@@ -181,6 +181,7 @@ function Forecast() {
             <FilterMultiSelect
               placeholder={"Категория"}
               options={categoryOptions}
+              values={categories}
               onChange={(values: selectedValues[]) => {
                 dispatch(changeCategories(values))
                 dispatch(changeSkus(skuOptions))
@@ -189,6 +190,7 @@ function Forecast() {
             <FilterMultiSelect
               placeholder={"Подкатегория"}
               options={subcategoryOptions}
+              values={subcategories}
               onChange={(values: selectedValues[]) => {
                 dispatch(changeSubcategories(values))
                 dispatch(changeSkus(skuOptions))
@@ -197,6 +199,7 @@ function Forecast() {
             <FilterMultiSelect
               placeholder={"Товар"}
               options={skuOptions}
+              values={skus}
               onChange={(values: selectedValues[]) => {
                 const skus = values.map((i) => i.value)
                 dispatch(changeSkus(skus))
