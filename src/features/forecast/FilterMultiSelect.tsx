@@ -21,10 +21,11 @@ function FilterMultiSelect({
     value: value,
     label: value,
   }))
+  const selectAll = { value: "*", label: "Выбрать все" }
 
   return (
     <Select
-      options={filterOptions}
+      options={[selectAll, ...filterOptions]}
       value={filterValue}
       isMulti={true}
       closeMenuOnSelect={false}

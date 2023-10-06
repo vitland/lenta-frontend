@@ -71,27 +71,6 @@ function Forecast() {
     }
   }, [shops, groups, categories, subcategories, allOptions])
 
-  // useEffect(() => {
-  //   let filteredArr: caterogiesResponse[] = []
-  //   if (groups.length !== 0) {
-  //     filteredArr = allOptions.filter((opt) => groups.includes(opt.group))
-  //   } else if (categories.length !== 0) {
-  //     filteredArr = allOptions.filter((opt) =>
-  //       categories.includes(opt.category),
-  //     )
-  //   } else if (subcategories.length !== 0) {
-  //     filteredArr = allOptions.filter((opt) =>
-  //       subcategories.includes(opt.subcategory),
-  //     )
-  //   }
-  //   if (filteredArr.length !== 0) {
-  //     setCategoryOptions([])
-  //     setSkuOptions([])
-  //     setSubcategoryOptions([])
-  //     setFilteredOptions(filteredArr)
-  //   }
-  // }, [shops, groups, categories, subcategories, allOptions])
-
   useEffect(() => {
     let filteredArr: caterogiesResponse[] = []
     if (groups.length !== 0) {
@@ -171,8 +150,20 @@ function Forecast() {
               options={shopOptions}
               values={shops}
               onChange={(values: selectedValues[]) => {
-                dispatch(changeShops(values))
-                dispatch(changeSkus(skuOptions))
+                if (
+                  values.length > 0 &&
+                  values[values.length - 1].value === "*"
+                ) {
+                  const allValues = shopOptions.map((option) => ({
+                    value: option,
+                    label: option,
+                  }))
+                  dispatch(changeShops(allValues))
+                  dispatch(changeSkus(skuOptions))
+                } else {
+                  dispatch(changeShops(values))
+                  dispatch(changeSkus(skuOptions))
+                }
               }}
             />
             <FilterMultiSelect
@@ -180,8 +171,20 @@ function Forecast() {
               values={groups}
               options={groupOptions}
               onChange={(values: selectedValues[]) => {
-                dispatch(changeGroups(values))
-                dispatch(changeSkus(skuOptions))
+                if (
+                  values.length > 0 &&
+                  values[values.length - 1].value === "*"
+                ) {
+                  const allValues = groupOptions.map((option) => ({
+                    value: option,
+                    label: option,
+                  }))
+                  dispatch(changeGroups(allValues))
+                  dispatch(changeSkus(skuOptions))
+                } else {
+                  dispatch(changeGroups(values))
+                  dispatch(changeSkus(skuOptions))
+                }
               }}
             />
             <FilterMultiSelect
@@ -189,8 +192,20 @@ function Forecast() {
               options={categoryOptions}
               values={categories}
               onChange={(values: selectedValues[]) => {
-                dispatch(changeCategories(values))
-                dispatch(changeSkus(skuOptions))
+                if (
+                  values.length > 0 &&
+                  values[values.length - 1].value === "*"
+                ) {
+                  const allValues = categoryOptions.map((option) => ({
+                    value: option,
+                    label: option,
+                  }))
+                  dispatch(changeCategories(allValues))
+                  dispatch(changeSkus(skuOptions))
+                } else {
+                  dispatch(changeCategories(values))
+                  dispatch(changeSkus(skuOptions))
+                }
               }}
             />
             <FilterMultiSelect
@@ -198,8 +213,20 @@ function Forecast() {
               options={subcategoryOptions}
               values={subcategories}
               onChange={(values: selectedValues[]) => {
-                dispatch(changeSubcategories(values))
-                dispatch(changeSkus(skuOptions))
+                if (
+                  values.length > 0 &&
+                  values[values.length - 1].value === "*"
+                ) {
+                  const allValues = subcategoryOptions.map((option) => ({
+                    value: option,
+                    label: option,
+                  }))
+                  dispatch(changeSubcategories(allValues))
+                  dispatch(changeSkus(skuOptions))
+                } else {
+                  dispatch(changeSubcategories(values))
+                  dispatch(changeSkus(skuOptions))
+                }
               }}
             />
             <FilterMultiSelect
@@ -207,9 +234,17 @@ function Forecast() {
               options={skuOptions}
               values={localSkus}
               onChange={(values: selectedValues[]) => {
-                const skus = values.map((i) => i.value)
-                setLocalSkus(skus)
-                dispatch(changeSkus(skus))
+                if (
+                  values.length > 0 &&
+                  values[values.length - 1].value === "*"
+                ) {
+                  setLocalSkus(skuOptions)
+                  dispatch(changeSkus(skuOptions))
+                } else {
+                  const skus = values.map((i) => i.value)
+                  setLocalSkus(skus)
+                  dispatch(changeSkus(skus))
+                }
               }}
             />
           </fieldset>
@@ -228,8 +263,15 @@ function Forecast() {
             Очистить все
           </button>
         </form>
-        <p>{`Прогноз спроса на ${data[0].forecast.sales_units} - `}</p>
+        <p>{`Прогноз спроса на ${
+          Object.keys(data[0].forecast.sales_units)[0]
+        } - ${
+          Object.keys(data[0].forecast.sales_units)[
+            Object.keys(data[0].forecast.sales_units).length - 1
+          ]
+        }`}</p>
         <Table />
+        <button>Экспортировать</button>
       </section>
     </>
   )
