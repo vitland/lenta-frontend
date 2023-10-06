@@ -1,6 +1,6 @@
 import { SidebarData } from "../SidebarData"
 import styles from "./Navbar.module.css"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import Logo from "../logo/Logo"
 
 interface NavbarProps {
@@ -8,10 +8,15 @@ interface NavbarProps {
 }
 
 function Navbar(props: NavbarProps) {
+  const { pathname } = useLocation()
+
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.sidebar}>
+        <div
+          style={{ display: pathname === "/sign-in" ? "none" : "" }}
+          className={styles.sidebar}
+        >
           <Logo />
           <div className={styles.topSection}></div>
           {SidebarData.map((item, index) => (
@@ -26,7 +31,9 @@ function Navbar(props: NavbarProps) {
             </NavLink>
           ))}
         </div>
-        <main>{props.children}</main>
+        <main style={{ padding: pathname === "/sign-in" ? "0" : "20px" }}>
+          {props.children}
+        </main>
       </div>
     </>
   )
