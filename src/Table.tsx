@@ -28,27 +28,22 @@ const Table = () => {
       {
         header: "Магазин",
         accessorKey: "store",
-        // size: 200,
       },
       {
         header: "Группа",
         accessorKey: "group",
-        // size: 200,
       },
       {
         header: "Категория",
         accessorKey: "category",
-        // size: 200,
       },
       {
         header: "Подкатегория",
         accessorKey: "subcategory",
-        // size: 200,
       },
       {
         header: "Товар",
         accessorKey: "sku",
-        // size: 200,
       },
       ...forecastCol,
     ],
@@ -77,11 +72,13 @@ const Table = () => {
           maxSize: 250, //allow columns to get larger than default
           size: 100, //make columns wider by default
         }}
+        //
         muiTablePaperProps={{
           sx: {
             width: "100%",
             maxWidth: "1700px",
             boxSizing: "border-box",
+            boxShadow: "none",
           },
         }}
         //КОнтейнер с данными
@@ -89,13 +86,21 @@ const Table = () => {
           sx: {
             width: "100%",
             maxHeight: "800px",
+            border: "none",
+            // boxShadow: "none",
           },
         }}
+        muiTableBodyCellProps={{
+          sx: {
+            border: "none",
+          },
+        }}
+        //вся таблица
         muiTableProps={{
           sx: {
             width: "100%",
-            border: "1px solid rgba(81, 81, 81, 1)",
             tableLayout: "fixed",
+            // boxShadow: "none",
           },
         }}
         initialState={{

@@ -154,7 +154,7 @@ function Forecast() {
 
   return (
     <>
-      <Header title="Прогноз" />
+      <Header title="Прогноз спроса на 14 дней" />
       <section className={styles.container}>
         <form
           action=""
@@ -214,20 +214,21 @@ function Forecast() {
             />
           </fieldset>
           <button className={styles.btn}>Обновить прогноз</button>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              dispatch(changeShops([]))
+              dispatch(changeGroups([]))
+              dispatch(changeCategories([]))
+              dispatch(changeSubcategories([]))
+              dispatch(changeSkus([]))
+              setLocalSkus([])
+            }}
+          >
+            Очистить все
+          </button>
         </form>
-        <button
-          className={styles.btn}
-          onClick={() => {
-            dispatch(changeShops([]))
-            dispatch(changeGroups([]))
-            dispatch(changeCategories([]))
-            dispatch(changeSubcategories([]))
-            dispatch(changeSkus([]))
-            setLocalSkus([])
-          }}
-        >
-          Очистить все
-        </button>
+        <p>{`Прогноз спроса на ${data[0].forecast.sales_units} - `}</p>
         <Table />
       </section>
     </>
