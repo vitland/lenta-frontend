@@ -13,12 +13,11 @@
 main {
   width: 100%;
   background-color: var(--background-color);
-  padding: 20px;
   box-sizing: border-box;
-  max-width: 1800px;
+  height: 100vh;
 }
 /* To do */
-.navbar__title {
+/* .navbar__title {
   color: #fff;
   font-weight: 600;
   margin: 0 auto;
@@ -53,7 +52,7 @@ main {
 
 .navbar__icon {
   font-size: 20px;
-}
+} */
 
 .sidebar {
   background-color: #fff;
