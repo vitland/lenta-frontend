@@ -1,6 +1,6 @@
 .navbar {
   background-color: var(--first-color);
-  height: 50px;
+  height: 110px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -11,10 +11,12 @@
 }
 main {
   width: 100%;
-  padding: 20px;
+  background-color: var(--background-color);
+  box-sizing: border-box;
+  height: 100vh;
 }
 /* To do */
-.navbar__title {
+/* .navbar__title {
   color: #fff;
   font-weight: 600;
   margin: 0 auto;
@@ -49,46 +51,57 @@ main {
 
 .navbar__icon {
   font-size: 20px;
-}
+} */
 
 .sidebar {
-  background: var(--first-color);
-  position: static;
+  background-color: #fff;
   color: #fff;
   height: 100vh;
-  width: 200px;
+  width: 178px;
   transition: all 0.5s;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 }
 .topSection {
   display: flex;
   align-items: center;
   padding: 0 15px;
 }
-/* .logo {
-  font-size: 30px;
-} */
-.bars {
-  display: flex;
-  font-size: 25px;
-  margin-left: 10px;
-}
 .link {
   display: flex;
-  color: #fff;
+  color: #001e64;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 450;
+  line-height: 26px;
+  letter-spacing: -0.2px;
   padding: 10px 15px;
   gap: 15px;
+  cursor: pointer;
   transition: all 0.5s;
+  margin-bottom: 30px;
 }
 .link:hover {
-  background: var(--background-color);
-  /* color: #000; */
+  border-left: solid 7px #003c96;
+  font-weight: 600;
   transition: all 0.5s;
 }
-/* .active {
-  background: var(--first-color-light);
-  color: #000;
-} */
-.icon,
+.active {
+  display: flex;
+  color: #001e64;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+  padding: 10px 15px;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-bottom: 30px;
+  border-left: solid 7px #003c96;
+  font-weight: 600;
+}
 .linkText {
   font-size: 20px;
+  color: var(--text-color);
+  display: block;
 }
