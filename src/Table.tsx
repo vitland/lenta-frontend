@@ -59,8 +59,9 @@ const Table = () => {
         enableColumnOrdering={false}
         enableColumnFilters={false}
         enablePinning={true}
-        enableColumnActions={false}
+        // enableColumnActions={false}
         enableGlobalFilter={false} //turn off a feature
+        enableHiding
         // enablePagination={false}
         // enableBottomToolbar={false}
         enableTopToolbar={false}
