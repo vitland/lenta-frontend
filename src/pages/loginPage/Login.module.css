@@ -63,11 +63,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #2c2a29;
   font-size: 24px;
   font-style: normal;
   font-weight: 450;
-  line-height: 26px; /* 108.333% */
+  line-height: 26px;
   letter-spacing: -0.24px;
   border-radius: 15px;
+}
+
+.login__btn_active {
+  background: #FFB900;
 }
