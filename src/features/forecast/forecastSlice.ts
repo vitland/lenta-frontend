@@ -11,7 +11,7 @@ const initialState: ForecastState = {
 }
 
 export const fetchForecast = createAsyncThunk(
-  "forecats/fetchForecast",
+  "forecast/fetchForecast",
   async ({ shops, skus, date }: any) => {
     // const storeParam = stores.reducer(
     //   (acc: any, cur: any) => ({ ...acc, store: cur }),
@@ -19,26 +19,29 @@ export const fetchForecast = createAsyncThunk(
     // )
     // console.log(storeParam)
     const response = await axios.get(`${BASE_URL}/api/v1/forecast/`, {
-      // params: {
-      //   store: "c81e728d9d4c2f636f067f89cc14862c",
-      //   product: "f9ee6d53edebe412feb1118b618900c8",
-      //   // date,
-      // },
       params: {
-        store: shops.toString(),
-        // product: skus.toString(),
+        store: "16a5cdae362b8d27a1d8f8c7b78b4330c",
+        sku: "0f152427918d29bb1081834c1d375a48",
+        forecast_date: "2023-07-19",
       },
+      // params: {
+      //   store: shops.toString(),
+      //   // product: skus.toString(),
+      // },
     })
     return response.data
   },
 )
-// export const exportForecast = createAsyncThunk(
-//   "forecats/fetchForecast",
-//   async (query) => {
-//     const response = await axios.get("URL DOBAVIT/exportforecats")
-//     return [...response.data]
-//   },
-// )
+export const exportForecast = createAsyncThunk(
+  "forecast/fetchForecast",
+  async (query) => {
+    const response = await axios.get(`${BASE_URL}/api/v1/forecast/download_file/`,
+      {
+        params: {}
+      })
+    return [...response.data]
+  },
+)
 
 const forecastSlice = createSlice({
   name: "forecast",
