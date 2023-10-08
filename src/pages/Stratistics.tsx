@@ -3,6 +3,7 @@ import Header from "../components/header/Header"
 import styles from "./Statistics.module.css"
 import { data } from "../utils/data"
 import Table from "../Table"
+import { FormEvent } from "react"
 
 function Statistics() {
   const handleSubmit = (e: FormEvent) => {

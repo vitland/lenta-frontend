@@ -6,11 +6,6 @@ export const SidebarData = [
   },
   {
     path: "/forecast",
-    name: "Заказы",
-    cName: "nav-text",
-  },
-  {
-    path: "/statistics",
     name: "Прогноз",
     cName: "nav-text",
   },
