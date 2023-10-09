@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { MaterialReactTable } from "material-react-table"
 import { type MRT_ColumnDef } from "material-react-table" // If using TypeScript (optional, but recommended)
 import { MRT_Localization_RU } from "material-react-table/locales/ru"
