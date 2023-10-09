@@ -1,0 +1,46 @@
+.container {
+  margin: 0 auto;
+  max-height: 500px;
+  max-width: 1080px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-self: center;
+}
+.header{
+  font-size: 40px;
+}
+.img {
+  max-width: 450px;
+  object-fit: contain;
+}
+.infoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 455px;
+}
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* gap: 75px; */
+}
+.btn{
+    width: 291px;
+    height: 60px;
+    background-color: #ffb900;
+    color: #000;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 26px;
+    font-family: "Futura PT", serif;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    text-decoration: none;
+}
