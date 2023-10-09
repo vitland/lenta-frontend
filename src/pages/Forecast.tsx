@@ -2,7 +2,7 @@ import styles from "./Forecast.module.css"
 import Form from "../components/form/Form"
 
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import Table from "../components/table/Table"
+import ForecastTable from "../components/forecastTable/ForecastTable"
 
 import Header from "../components/header/Header"
 
@@ -19,7 +19,7 @@ function Forecast() {
   const dispatch = useAppDispatch()
   const forecastList = useAppSelector(selectAllForecasts)
   const shops = useAppSelector(selectedShops)
-  const skus = useAppSelector(selectedShops)
+  const skus = useAppSelector(selectedSkus)
   const date = useDate()
 
   const handleSubmit = (e: FormEvent) => {
@@ -30,7 +30,7 @@ function Forecast() {
     <>
       <Header title="Прогноз спроса на 14 дней" />
       <section className={styles.container}>
-        <Form handleSubmit={handleSubmit} />
+        <Form handleSubmit={handleSubmit} text={"Сделать прогноз"} />
         {forecastList && forecastList.length !== 0 && (
           <p>{`Прогноз спроса на ${
             Object.keys(forecastList[0].forecast)[0]
@@ -41,7 +41,7 @@ function Forecast() {
           }`}</p>
         )}
         {forecastList && forecastList.length !== 0 && (
-          <Table data={forecastList} />
+          <ForecastTable data={forecastList} />
         )}
       </section>
     </>

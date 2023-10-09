@@ -6,7 +6,7 @@ import Login from "./pages/loginPage/Login"
 import { PrivateRoute } from "./components/private-route/PrivateRoute"
 import { useEffect } from "react"
 import { getUser } from "./service"
-
+import NotFound from "./pages/NotFound"
 function App() {
   useEffect(() => {
     const fetchUser = async () => {
@@ -40,6 +40,7 @@ function App() {
             }
           />
           <Route path="/sign-in" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Navbar>
     </BrowserRouter>

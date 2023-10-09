@@ -2,52 +2,62 @@ import { MaterialReactTable } from "material-react-table"
 import { type MRT_ColumnDef } from "material-react-table" // If using TypeScript (optional, but recommended)
 import { MRT_Localization_RU } from "material-react-table/locales/ru"
 import { useEffect, useMemo, useState } from "react"
-import { TForecast } from "../../types/types"
 import ExportBtn from "../exportBtn/ExportBtn"
+import { StatisticData } from "../../types/types"
+import { useAppSelector } from "../../app/hooks"
+import { selectGrouping } from "../../features/filters/fitltersSlice"
 
-type TabelProps = {
-  data: TForecast[]
+type StatisticTabelProps = {
+  data: StatisticData[]
 }
 
-const Table = ({ data }: TabelProps) => {
-  const [forecastCol, setForecastCol] = useState<MRT_ColumnDef<TForecast>[]>([])
+const StatisticTable = ({ data }: StatisticTabelProps) => {
+  const grouping = useAppSelector(selectGrouping)
 
-  useEffect(() => {
-    if (data) {
-      const columns = Object.keys(data[0].forecast).map((key) => ({
-        header: key.slice(5, 10),
-        accessorFn: (row: any) => row.forecast[key],
-        size: 80,
-      }))
-      setForecastCol(columns)
-    }
-  }, [data])
-
-  const columns = useMemo<MRT_ColumnDef<TForecast>[]>(
+  const columns = useMemo<MRT_ColumnDef<StatisticData>[]>(
     () => [
       {
-        header: "Магазин",
-        accessorKey: "store",
+        header: "Период",
+        accessorKey: "date_range",
+      },
+      {
+        header: "ТК",
+        accessorKey: "store_id",
       },
       {
         header: "Группа",
-        accessorKey: "group",
+        accessorKey: "group_id",
       },
       {
         header: "Категория",
-        accessorKey: "category",
+        accessorKey: "category_id",
       },
       {
         header: "Подкатегория",
-        accessorKey: "subcategory",
+        accessorKey: "subcategory_id",
       },
       {
         header: "Товар",
-        accessorKey: "sku",
+        accessorKey: "product_id",
       },
-      ...forecastCol,
+      {
+        header: "Факт(шт.)",
+        accessorKey: "fact",
+      },
+      {
+        header: "Прогноз",
+        accessorKey: "target",
+      },
+      {
+        header: "Факт - прогноз",
+        accessorKey: "delta",
+      },
+      {
+        header: "WAPE",
+        accessorKey: "WAPE",
+      },
     ],
-    [forecastCol],
+    [],
   )
 
   if (!data) return
@@ -56,9 +66,14 @@ const Table = ({ data }: TabelProps) => {
     <MaterialReactTable
       columns={columns}
       data={data}
-      // state={{
-      //   columnVisibility: { subcategory: false },
-      // }}
+      state={{
+        columnVisibility: {
+          subcategory_id: !grouping,
+          category_id: !grouping,
+          group_id: !grouping,
+          product_id: !grouping,
+        },
+      }}
       renderBottomToolbarCustomActions={() => <ExportBtn />}
       enableRowSelection={false} //enable some features
       enableColumnOrdering={false}
@@ -116,14 +131,16 @@ const Table = ({ data }: TabelProps) => {
           // boxShadow: "none",
         },
       }}
-      initialState={{
-        columnPinning: {
-          left: ["store", "group", "category", "subcategory", "sku"],
-        },
-      }}
+      initialState={
+        {
+          // columnPinning: {
+          //   left: ["store", "group", "category", "subcategory", "sku"],
+          // },
+        }
+      }
       localization={MRT_Localization_RU}
     />
   )
 }
 
-export default Table
+export default StatisticTable

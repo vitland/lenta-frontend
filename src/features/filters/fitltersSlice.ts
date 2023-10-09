@@ -1,30 +1,18 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 import { FiltersState, selectedValues } from "../../types/types"
 import { RootState } from "../../app/store"
-import axios from "axios"
-import { BASE_URL } from "../../utils/consts"
+
+
 const initialState: FiltersState = {
   shopsSelected: [],
   groupsSelected: [],
   categoriesSelected: [],
   subcategoriesSelected: [],
   skusSelected: [],
+  grouping: false,
   status: "",
   error: "",
 }
-
-// export const fetchCategories = createAsyncThunk(
-//   "forecats/fetchCategories",
-//   async () => {
-//     const response = await axios.get(`${BASE_URL}/api/v1/categories/`)
-//     return [...response.data]
-//   },
-// )
-
-export const fetchShops = createAsyncThunk("forecats/fetchShops", async () => {
-  const response = await axios.get(BASE_URL)
-  return [...response.data]
-})
 
 const filterSlice = createSlice({
   name: "filters",
@@ -55,30 +43,11 @@ const filterSlice = createSlice({
     changeSkus: (state, action) => {
       state.skusSelected = action.payload
     },
+    changeGrouping: (state, action) => {
+      state.grouping = action.payload
+    },
   },
-  extraReducers(builder) {
-    // builder
-    //   .addCase(fetchCategories.pending, (state, action) => {
-    //     state.status = "loading"
-    //   })
-    //   .addCase(fetchCategories.fulfilled, (state, action) => {
-    //     state.status = "succeeded"
-    //   })
-    //   .addCase(fetchCategories.rejected, (state, action) => {
-    //     state.status = "failed"
-    //     state.error = action.error.message
-    //   })
-    //   .addCase(fetchShops.pending, (state, action) => {
-    //     state.status = "loading"
-    //   })
-    //   .addCase(fetchShops.fulfilled, (state, action) => {
-    //     state.status = "succeeded"
-    //   })
-    //   .addCase(fetchShops.rejected, (state, action) => {
-    //     state.status = "failed"
-    //     state.error = action.error.message
-    //   })
-  },
+
 })
 
 export default filterSlice.reducer
@@ -88,6 +57,7 @@ export const {
   changeSubcategories,
   changeGroups,
   changeSkus,
+  changeGrouping
 } = filterSlice.actions
 
 export const selectedShops = (state: RootState) => state.filters.shopsSelected
@@ -101,3 +71,5 @@ export const selectedSubcategories = (state: RootState) =>
   state.filters.subcategoriesSelected
 
 export const selectedSkus = (state: RootState) => state.filters.skusSelected
+export const selectGrouping = (state: RootState) => state.filters.grouping
+

@@ -21,25 +21,24 @@ import {
   selectedSkus,
   selectedSubcategories,
 } from "../../features/filters/fitltersSlice"
-
 import useDate from "../../hooks/useDate"
-import { data } from "../../utils/data"
-import { fakeOptions, fakeShops } from "../../utils/data2"
-import ForecastBtn from "../../components/forecastBtn/ForecastBtn"
+
+import SubmitBtn from "../submitBtn/SubmitBtn"
 import ResetBtn from "../../components/resetBtn/ResetBtn"
-import { selectAllForecasts } from "../../features/forecast/forecastSlice"
 
 type FormProps = {
   handleSubmit: (e: FormEvent) => void
+  text: string
 }
 
-function Form({ handleSubmit }: FormProps) {
+function Form({ handleSubmit, text }: FormProps) {
   const dispatch = useAppDispatch()
 
   const [allOptions, setAllOptions] = useState<caterogiesResponse[]>([])
   const [filteredOptions, setFilteredOptions] = useState<caterogiesResponse[]>(
     [],
   )
+
   //select values
   const [shopOptions, setShopOptions] = useState<string[]>([])
   const [groupOptions, setGroupOptions] = useState<string[]>([])
@@ -49,7 +48,6 @@ function Form({ handleSubmit }: FormProps) {
   const [localSkus, setLocalSkus] = useState<string[]>([])
   //active filters
 
-  //TODO: пределать локальные selectedValues, диспатчить их значения в useeffect или также
   const shops = useAppSelector(selectedShops)
   const groups = useAppSelector(selectedGroups)
   const categories = useAppSelector(selectedCategories)
@@ -59,14 +57,14 @@ function Form({ handleSubmit }: FormProps) {
     Promise.all([
       axios.get(`${BASE_URL}/api/v1/categories/`),
       axios.get(`${BASE_URL}/api/v1/shops/`),
-    ]).then(([categoriesData, shopsData]) => {
-      setAllOptions(categoriesData.data.data)
-      setShopOptions(() =>
-        shopsData.data.data.map((shop: ShopsData) => shop.store),
-      )
-    })
-    // setAllOptions(fakeOptions)
-    // setShopOptions(fakeShops)
+    ])
+      .then(([categoriesData, shopsData]) => {
+        setAllOptions(categoriesData.data.data)
+        setShopOptions(() =>
+          shopsData.data.data.map((shop: ShopsData) => shop.store),
+        )
+      })
+      .catch((err) => err.message)
   }, [])
 
   useEffect(() => {
@@ -83,7 +81,6 @@ function Form({ handleSubmit }: FormProps) {
   useEffect(() => {
     let filteredArr: caterogiesResponse[] = []
     if (groups.length !== 0) {
-      console.log("group")
       filteredArr = allOptions.filter((opt) => groups.includes(opt.group))
       setFilteredOptions(filteredArr)
       setCategoryOptions([])
@@ -94,7 +91,6 @@ function Form({ handleSubmit }: FormProps) {
   useEffect(() => {
     let filteredArr: caterogiesResponse[] = []
     if (categories.length !== 0) {
-      console.log("cat")
       filteredArr = allOptions.filter((opt) =>
         categories.includes(opt.category),
       )
@@ -103,7 +99,6 @@ function Form({ handleSubmit }: FormProps) {
       setSkuOptions([])
     }
     if (categories.length === 0 && groups.length !== 0) {
-      console.log("group&cat")
       filteredArr = allOptions.filter((opt) => groups.includes(opt.group))
       setFilteredOptions(filteredArr)
       setCategoryOptions([])
@@ -144,7 +139,7 @@ function Form({ handleSubmit }: FormProps) {
     <form action="" onSubmit={handleSubmit} className={styles.form}>
       <fieldset className={styles.fieldset}>
         <FilterMultiSelect
-          placeholder={"ТК"}
+          placeholder={"Торговый Комплекс"}
           options={shopOptions}
           values={shops}
           onChange={(values: selectedValues[]) => {
@@ -242,7 +237,7 @@ function Form({ handleSubmit }: FormProps) {
             setLocalSkus([])
           }}
         />
-        <ForecastBtn />
+        <SubmitBtn text={text} />
       </div>
     </form>
   )

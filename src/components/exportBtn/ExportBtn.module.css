@@ -1,20 +1,22 @@
-.button{
+.button {
   width: 290px;
   height: 45px;
   border-radius: 15px;
   font-size: 24px;
-  font-weight: 450;
+  font-weight: 400;
   line-height: 26px;
+  font-family: "Futura PT";
   letter-spacing: -0.01em;
   display: flex;
   justify-content: center;
   gap: 15px;
   align-items: center;
-  background: #003C96;
+  background: #003c96;
   color: #fff;
   order: 1;
+  cursor: pointer;
 }
 
 .button:hover {
-  background: #004E96;
+  background: #004e96;
 }

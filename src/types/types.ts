@@ -1,3 +1,14 @@
+export type UserState = {
+  user: User | null
+  isLogin: boolean
+  error: string | undefined
+}
+
+export type User = {
+  email: string
+  password: string
+}
+
 type ForecastItem = {
   [date: string]: number
 }
@@ -15,12 +26,31 @@ export type ForecastState = {
   error: string | undefined
 }
 
+export type StatisticData = {
+  store_id: string
+  product_id: string
+  target: number
+  fact: number
+  group_id: string
+  category_id: string
+  subcategory_id: string
+  date_range: string
+  delta: number
+  WAPE: string
+}
+export type StatisticState = {
+  statisticList: StatisticData[] | null
+  status: string
+  error: string | undefined
+}
+
 export type FiltersState = {
   shopsSelected: string[]
   groupsSelected: string[]
   categoriesSelected: string[]
   subcategoriesSelected: string[]
   skusSelected: string[]
+  grouping:boolean
   status: string
   error: string | undefined
 }
