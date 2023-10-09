@@ -5,18 +5,17 @@ import Forecast from "./pages/forecastPage/Forecast"
 import Login from "./pages/loginPage/Login"
 import { PrivateRoute } from "./components/private-route/PrivateRoute"
 import { useEffect } from "react"
-import { getUser } from "./service"
 import NotFound from "./pages/notfoundPage/NotFound"
-function App() {
-  useEffect(() => {
-    const fetchUser = async () => {
-      const user = await getUser()
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user))
-      }
-    }
+import {getUser} from "./features/user/userSlice";
+import {useAppDispatch} from "./app/hooks";
 
-    fetchUser()
+function App() {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      dispatch(getUser({id: userId}))
+    }
   }, [])
 
   return (

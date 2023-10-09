@@ -7,6 +7,7 @@ export type UserState = {
 export type User = {
   email: string
   password: string
+  id: string
 }
 
 type ForecastItem = {
