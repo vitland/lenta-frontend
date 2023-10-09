@@ -87,7 +87,6 @@ const statisticSlice = createSlice({
       })
 
     .addCase(exportStatistic.pending, (state, action) => {
-      state.status = "loading"
     })
     .addCase(exportStatistic.fulfilled, (state, action) => {
       state.status = "succeeded"

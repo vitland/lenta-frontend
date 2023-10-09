@@ -34,6 +34,9 @@ function Statistics() {
     dispatch(exportStatistic({ skus, shops }))
   }
   const renderTableSection = () => {
+    if (stastisicList && stastisicList.length === 0)
+      return <h3>Ничего не найдено</h3>
+      
     return (
       stastisicList &&
       stastisicList.length !== 0 && (

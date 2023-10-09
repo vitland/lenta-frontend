@@ -32,7 +32,9 @@ function Forecast() {
   const handleExport = () => {
     dispatch(exportForecast({ skus, shops }))
   }
+  
   const renderTableSection = () => {
+    if (forecastList && forecastList.length === 0) return <h3>Ничего не найдено</h3>
     return (
       forecastList &&
       forecastList.length !== 0 && (
