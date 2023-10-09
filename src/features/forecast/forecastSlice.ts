@@ -6,7 +6,7 @@ import { BASE_URL } from "../../utils/consts"
 
 const initialState: ForecastState = {
   forecastList: null,
-  status: "",
+  status: "idel",
   error: "",
 }
 
@@ -43,7 +43,7 @@ export const exportForecast = createAsyncThunk(
           },
           params: {
             store: shops,
-            sku: "0f152427918d29bb1081834c1d375a48",
+            sku: skus,
             // forecast_date: "2023-07-19",
           },
           paramsSerializer: {
@@ -53,17 +53,15 @@ export const exportForecast = createAsyncThunk(
       const href = URL.createObjectURL(response.data);
       const link = document.createElement("a");
       link.href = href;
-      link.setAttribute("download", "report.xlsx"); 
+      link.setAttribute("download", "report.xlsx");
       document.body.appendChild(link);
       link.click();
 
-      // clean up "a" element & remove ObjectURL
       document.body.removeChild(link);
       URL.revokeObjectURL(href);
     } catch (error: any) {
       return error.message
     }
-
   },
 )
 
@@ -95,7 +93,6 @@ const forecastSlice = createSlice({
       })
       .addCase(exportForecast.fulfilled, (state, action) => {
         state.status = "succeeded"
-        console.log('first')
       })
       .addCase(exportForecast.rejected, (state, action) => {
         state.status = "failed"
@@ -104,7 +101,8 @@ const forecastSlice = createSlice({
   },
 })
 export const { setFakeData } = forecastSlice.actions
-export const selectAllForecasts = (state: RootState) =>
-  state.forecast.forecastList
+export const selectAllForecasts = (state: RootState) => state.forecast.forecastList
+export const forecastStatus = (state: RootState) => state.forecast.status
+
 
 export default forecastSlice.reducer

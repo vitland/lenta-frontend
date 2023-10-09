@@ -9,7 +9,7 @@ interface HeaderProps {
 
 function Header(props: HeaderProps) {
   const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem("user") ?? "")
+  const user = JSON.parse(localStorage.getItem("user") ?? "Антон Н.")
 
   return (
     <div className={styles.header}>

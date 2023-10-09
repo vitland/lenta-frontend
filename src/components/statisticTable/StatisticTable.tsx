@@ -131,13 +131,6 @@ const StatisticTable = ({ data }: StatisticTabelProps) => {
           // boxShadow: "none",
         },
       }}
-      initialState={
-        {
-          // columnPinning: {
-          //   left: ["store", "group", "category", "subcategory", "sku"],
-          // },
-        }
-      }
       localization={MRT_Localization_RU}
     />
   )

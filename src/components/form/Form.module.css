@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  margin-top: 50px;
 }
 .fieldset {
   display: flex;
@@ -16,5 +17,5 @@
   display: flex;
   gap: 30px;
   justify-content: flex-end;
-  margin: 25px 0 50px;
+  margin: 35px 0 50px;
 }

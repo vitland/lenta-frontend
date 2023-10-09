@@ -1,12 +1,12 @@
 import Navbar from "./components/navbar/Navbar"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Statistics from "./pages/Stratistics"
-import Forecast from "./pages/Forecast"
+import Statistics from "./pages/statisticPage/Stratistics"
+import Forecast from "./pages/forecastPage/Forecast"
 import Login from "./pages/loginPage/Login"
 import { PrivateRoute } from "./components/private-route/PrivateRoute"
 import { useEffect } from "react"
 import { getUser } from "./service"
-import NotFound from "./pages/NotFound"
+import NotFound from "./pages/notfoundPage/NotFound"
 function App() {
   useEffect(() => {
     const fetchUser = async () => {

@@ -63,6 +63,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLogin = true
+        state.user=action.payload.data
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLogin = false

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FormEvent } from "react"
 import styles from "./Form.module.css"
-import FilterMultiSelect from "../../features/forecast/FilterMultiSelect"
+import FilterMultiSelect from "../filterMultiSelect/FilterMultiSelect"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { BASE_URL } from "../../utils/consts"
 import axios from "axios"
@@ -21,8 +21,6 @@ import {
   selectedSkus,
   selectedSubcategories,
 } from "../../features/filters/fitltersSlice"
-import useDate from "../../hooks/useDate"
-
 import SubmitBtn from "../submitBtn/SubmitBtn"
 import ResetBtn from "../../components/resetBtn/ResetBtn"
 
@@ -33,7 +31,6 @@ type FormProps = {
 
 function Form({ handleSubmit, text }: FormProps) {
   const dispatch = useAppDispatch()
-
   const [allOptions, setAllOptions] = useState<caterogiesResponse[]>([])
   const [filteredOptions, setFilteredOptions] = useState<caterogiesResponse[]>(
     [],
@@ -46,12 +43,13 @@ function Form({ handleSubmit, text }: FormProps) {
   const [subcategoryOptions, setSubcategoryOptions] = useState<string[]>([])
   const [skuOptions, setSkuOptions] = useState<string[]>([])
   const [localSkus, setLocalSkus] = useState<string[]>([])
-  //active filters
 
+  //active filters
   const shops = useAppSelector(selectedShops)
   const groups = useAppSelector(selectedGroups)
   const categories = useAppSelector(selectedCategories)
   const subcategories = useAppSelector(selectedSubcategories)
+  const skus = useAppSelector(selectedSkus)
 
   useEffect(() => {
     Promise.all([
@@ -65,6 +63,11 @@ function Form({ handleSubmit, text }: FormProps) {
         )
       })
       .catch((err) => err.message)
+  }, [])
+
+  //Запонение инпута выбраными товарами при загрузке страницы
+  useEffect(() => {
+    setLocalSkus(skus)
   }, [])
 
   useEffect(() => {

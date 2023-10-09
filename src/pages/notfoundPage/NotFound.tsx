@@ -1,5 +1,5 @@
 import React from "react"
-import img from "../images/404x4.png"
+import img from "../../images/404x4.png"
 function NotFound() {
   return (
     <section>

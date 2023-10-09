@@ -56,19 +56,13 @@ const ForecastTable = ({ data }: TabelProps) => {
     <MaterialReactTable
       columns={columns}
       data={data}
-      // state={{
-      //   columnVisibility: { subcategory: false },
-      // }}
       renderBottomToolbarCustomActions={() => <ExportBtn />}
       enableRowSelection={false} //enable some features
       enableColumnOrdering={false}
       enableColumnFilters={false}
       enablePinning={true}
-      // enableColumnActions={false}
       enableGlobalFilter={false} //turn off a feature
       enableHiding
-      // enablePagination={false}
-      // enableBottomToolbar={false}
       enableTopToolbar={false}
       enableSorting={false}
       enableStickyHeader
@@ -92,11 +86,9 @@ const ForecastTable = ({ data }: TabelProps) => {
           width: "100%",
           maxHeight: "800px",
           border: "none",
-          // boxShadow: "none",
         },
       }}
       muiTableHeadCellProps={{
-        // align: "center",
         sx: {
           padding: "10px 5px",
         },
@@ -111,10 +103,8 @@ const ForecastTable = ({ data }: TabelProps) => {
       //вся таблица
       muiTableProps={{
         sx: {
-          fontSize: "24px",
           width: "100%",
           tableLayout: "fixed",
-          // boxShadow: "none",
         },
       }}
       initialState={{
