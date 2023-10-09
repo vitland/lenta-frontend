@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from "react"
 import { BiExport } from "react-icons/bi"
 import styles from "./ExportBtn.module.css"
