@@ -2,15 +2,14 @@ import styles from "./Forecast.module.css"
 import Form from "../components/form/Form"
 
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import Table from "../Table"
+import Table from "../components/table/Table"
 
 import Header from "../components/header/Header"
-import { data } from "../utils/data"
 
 import {
+  exportForecast,
   fetchForecast,
   selectAllForecasts,
-  setFakeData,
 } from "../features/forecast/forecastSlice"
 
 import { FormEvent } from "react"
@@ -25,26 +24,25 @@ function Forecast() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    console.log('ddd')
-    // dispatch(setFakeData(data))
     dispatch(fetchForecast({ skus, shops, date }))
   }
-
   return (
     <>
       <Header title="Прогноз спроса на 14 дней" />
       <section className={styles.container}>
         <Form handleSubmit={handleSubmit} />
-        {forecastList && (
+        {forecastList && forecastList.length !== 0 && (
           <p>{`Прогноз спроса на ${
-            Object.keys(data[0].forecast.sales_units)[0]
+            Object.keys(forecastList[0].forecast)[0]
           } - ${
-            Object.keys(data[0].forecast.sales_units)[
-              Object.keys(data[0].forecast.sales_units).length - 1
+            Object.keys(forecastList[0].forecast)[
+              Object.keys(forecastList[0].forecast).length - 1
             ]
           }`}</p>
         )}
-        {forecastList && <Table data={forecastList} />}
+        {forecastList && forecastList.length !== 0 && (
+          <Table data={forecastList} />
+        )}
       </section>
     </>
   )

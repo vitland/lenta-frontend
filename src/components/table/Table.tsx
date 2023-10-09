@@ -2,20 +2,22 @@ import { MaterialReactTable } from "material-react-table"
 import { type MRT_ColumnDef } from "material-react-table" // If using TypeScript (optional, but recommended)
 import { MRT_Localization_RU } from "material-react-table/locales/ru"
 import { useEffect, useMemo, useState } from "react"
-import { TForecast } from "./types/types"
-import ExportBtn from "./components/exportBtn/ExportBtn"
+import { TForecast } from "../../types/types"
+import ExportBtn from "../exportBtn/ExportBtn"
+
 type TabelProps = {
   data: TForecast[]
 }
+
 const Table = ({ data }: TabelProps) => {
   const [forecastCol, setForecastCol] = useState<MRT_ColumnDef<TForecast>[]>([])
 
   useEffect(() => {
     if (data) {
-      const columns = Object.keys(data[0].forecast.sales_units).map((key) => ({
-        header: key,
-        accessorFn: (row: any) => row.forecast.sales_units[key],
-        size: 100,
+      const columns = Object.keys(data[0].forecast).map((key) => ({
+        header: key.slice(5, 10),
+        accessorFn: (row: any) => row.forecast[key],
+        size: 80,
       }))
       setForecastCol(columns)
     }
@@ -48,6 +50,8 @@ const Table = ({ data }: TabelProps) => {
     [forecastCol],
   )
 
+  if (!data) return
+
   return (
     <MaterialReactTable
       columns={columns}
@@ -69,9 +73,9 @@ const Table = ({ data }: TabelProps) => {
       enableSorting={false}
       enableStickyHeader
       defaultColumn={{
-        minSize: 50, //allow columns to get smaller than default
+        minSize: 80, //allow columns to get smaller than default
         maxSize: 250, //allow columns to get larger than default
-        size: 100, //make columns wider by default
+        size: 150, //make columns wider by default
       }}
       //вся таблица
       muiTablePaperProps={{
@@ -91,9 +95,17 @@ const Table = ({ data }: TabelProps) => {
           // boxShadow: "none",
         },
       }}
+      muiTableHeadCellProps={{
+        // align: "center",
+        sx: {
+          padding: "10px 0px",
+        },
+      }}
       muiTableBodyCellProps={{
         sx: {
           border: "none",
+          boxSizing: "border-box",
+          padding: "15px 0px",
         },
       }}
       //вся таблица

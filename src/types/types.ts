@@ -6,10 +6,7 @@ export type TForecast = {
   store: string
   sku: string
   forecast_date: string
-  forecast: {
-    sales_units: ForecastItem
-    sku: string
-  }
+  forecast: ForecastItem[]
 }
 
 export type ForecastState = {

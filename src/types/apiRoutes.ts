@@ -1,6 +1,6 @@
 
 export enum ApiRoutes {
-  LOGIN= '/auth/token/login',
+  LOGIN = '/auth/token/login',
   LOGOUT = '/auth/token/logout',
   GET_USER = '/auth/token/user',
 }

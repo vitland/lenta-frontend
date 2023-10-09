@@ -13,35 +13,51 @@ const initialState: ForecastState = {
 export const fetchForecast = createAsyncThunk(
   "forecast/fetchForecast",
   async ({ shops, skus, date }: any) => {
-    // const storeParam = stores.reducer(
-    //   (acc: any, cur: any) => ({ ...acc, store: cur }),
-    //   {},
-    // )
-    // console.log(storeParam)
     const response = await axios.get(`${BASE_URL}/api/v1/forecast/`, {
       params: {
-        store: "16a5cdae362b8d27a1d8f8c7b78b4330c",
+        store: shops,
         sku: "0f152427918d29bb1081834c1d375a48",
-        forecast_date: "2023-07-19",
+        // forecast_date: "2023-07-19",
       },
-      // params: {
-      //   store: shops.toString(),
-      //   // product: skus.toString(),
-      // },
+      paramsSerializer: {
+        indexes: null,
+      },
     })
     return response.data
   },
 )
 export const exportForecast = createAsyncThunk(
-  "forecast/fetchForecast",
-  async (query) => {
+  "forecast/exportForecast",
+  async ({ shops, skus, date }: any) => {
     const response = await axios.get(`${BASE_URL}/api/v1/forecast/download_file/`,
       {
-        params: {}
+        responseType: "blob",
+        headers: {
+          "Content-Type": "application/vnd.ms-excel",
+        },
+        params: {
+          store: shops,
+          sku: "0f152427918d29bb1081834c1d375a48",
+          // forecast_date: "2023-07-19",
+        },
+        paramsSerializer: {
+          indexes: null,
+        },
       })
-    return [...response.data]
+      const href = URL.createObjectURL(response.data);
+
+      const link = document.createElement('a');
+      link.href = href;
+      link.setAttribute('download', 'report.xlsx'); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+  
+      // clean up "a" element & remove ObjectURL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
   },
 )
+
 
 const forecastSlice = createSlice({
   name: "forecast",
@@ -65,16 +81,17 @@ const forecastSlice = createSlice({
         state.error = action.error.message
       })
 
-    // .addCase(exportForecast.pending, (state, action) => {
-    //   state.status = "loading"
-    // })
-    // .addCase(exportForecast.fulfilled, (state, action) => {
-    //   state.status = "succeeded"
-    // })
-    // .addCase(exportForecast.rejected, (state, action) => {
-    //   state.status = "failed"
-    //   state.error = action.error.message
-    // })
+      .addCase(exportForecast.pending, (state, action) => {
+        state.status = "loading"
+      })
+      .addCase(exportForecast.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        console.log('first')
+      })
+      .addCase(exportForecast.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.error.message
+      })
   },
 })
 export const { setFakeData } = forecastSlice.actions

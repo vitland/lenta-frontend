@@ -1,8 +1,7 @@
+@import url("https://fonts.cdnfonts.com/css/futura-pt?styles=117663");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Futura PT", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -18,18 +17,18 @@ code {
   --header-height: 3.5rem;
 
   /*========== Colors ==========*/
-  --first-color: #FAFAFA;
+  --first-color: #fafafa;
   --first-color-alt: black;
   --first-color-light: #e1f5ff;
   --first-color-lighten: #fff;
   --title-color: #003c96;
-  --text-color: #2C2A29;
+  --text-color: #2c2a29;
   --text-color-light: #fff;
   --border-color: hsl(228, 99%, 98%);
   --border-color-hover: #568ede;
   --body-color: #fff;
   --container-color: #fff;
-  --background-color: #F9F9F9;
+  --background-color: #f9f9f9;
 
   /*========== Typography ==========*/
   --biggest-font-size: 4rem;

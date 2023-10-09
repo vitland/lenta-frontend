@@ -1,8 +1,7 @@
 import Form from "../components/form/Form"
 import Header from "../components/header/Header"
 import styles from "./Statistics.module.css"
-import { data } from "../utils/data"
-import Table from "../Table"
+import Table from "../components/table/Table"
 
 function Statistics() {
   const handleSubmit = (e: FormEvent) => {
@@ -16,7 +15,7 @@ function Statistics() {
       <Header title="Статистика" />
       <section className={styles.container}>
         <Form handleSubmit={handleSubmit} />
-
+{/* 
         {data && (
           <p>{`Прогноз спроса на ${
             Object.keys(data[0].forecast.sales_units)[0]
@@ -26,7 +25,7 @@ function Statistics() {
             ]
           }`}</p>
         )}
-        {data && <Table data={data} />}
+        {data && <Table data={data} />} */}
       </section>
     </>
   )

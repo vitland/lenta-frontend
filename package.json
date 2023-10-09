@@ -68,8 +68,12 @@
         "warn",
         "prefer-double"
       ],
-      "prettier/prettier": "error",
-      "react/jsx-no-target-blank": "off"
+   
+      "react/jsx-no-target-blank": "off",
+      "linebreak-style": [
+        "error",
+        "windows"
+      ]
     }
   },
   "prettier": "prettier-config-nick"

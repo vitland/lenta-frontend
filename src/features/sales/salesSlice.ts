@@ -33,11 +33,11 @@ export const fetchSales = createAsyncThunk(
 )
 
 const salesSlice = createSlice({
-  name: "forecast",
+  name: "sales",
   initialState,
   reducers: {
     setFakeSalesData: (state, action) => {
-      state.salestList = action.payload
+      state.salesList = action.payload
     },
   },
   extraReducers(builder) {

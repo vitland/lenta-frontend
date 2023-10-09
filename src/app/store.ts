@@ -2,11 +2,14 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import filtersReducer from "../features/filters/fitltersSlice"
 import forecastReducer from "../features/forecast/forecastSlice"
 import salesReducer from "../features/sales/salesSlice"
+import userReducer from "../features/user/userSlice"
+
 export const store = configureStore({
   reducer: {
     filters: filtersReducer,
     forecast: forecastReducer,
-    salse: salesReducer,
+    sales: salesReducer,
+    user: userReducer,
   },
 })
 
