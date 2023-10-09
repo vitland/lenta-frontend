@@ -5,6 +5,6 @@ export const login = async (email: string, password: string) => {
   // const data = await axiosInstance.put(ApiRoutes.LOGIN, {email, password});
 
   //заменить user на токены
-  localStorage.setItem('user', JSON.stringify({name: 'Nikita'}))
+  localStorage.setItem("user", JSON.stringify({ name: "Кириллов Н." }))
 
 }

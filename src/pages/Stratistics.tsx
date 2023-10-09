@@ -2,7 +2,7 @@ import Form from "../components/form/Form"
 import Header from "../components/header/Header"
 import styles from "./Statistics.module.css"
 import Table from "../components/table/Table"
-
+import { FormEvent } from "react"
 function Statistics() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
