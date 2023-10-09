@@ -89,7 +89,6 @@ const forecastSlice = createSlice({
       })
 
       .addCase(exportForecast.pending, (state, action) => {
-        state.status = "loading"
       })
       .addCase(exportForecast.fulfilled, (state, action) => {
         state.status = "succeeded"

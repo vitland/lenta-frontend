@@ -7,9 +7,10 @@ import ExportBtn from "../exportBtn/ExportBtn"
 
 type TabelProps = {
   data: TForecast[]
+  handleExport: () => void
 }
 
-const ForecastTable = ({ data }: TabelProps) => {
+const ForecastTable = ({ data, handleExport }: TabelProps) => {
   const [forecastCol, setForecastCol] = useState<MRT_ColumnDef<TForecast>[]>([])
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const ForecastTable = ({ data }: TabelProps) => {
     <MaterialReactTable
       columns={columns}
       data={data}
-      renderBottomToolbarCustomActions={() => <ExportBtn />}
+      renderBottomToolbarCustomActions={() => <ExportBtn handleExport={handleExport}/>}
       enableRowSelection={false} //enable some features
       enableColumnOrdering={false}
       enableColumnFilters={false}

@@ -10,6 +10,7 @@ import {
   selectedSkus,
 } from "../../features/filters/fitltersSlice"
 import {
+  exportStatistic,
   fetchStatistic,
   selectStatistic,
   statististicStatus,
@@ -29,6 +30,9 @@ function Statistics() {
     e.preventDefault()
     dispatch(fetchStatistic({ shops, skus }))
   }
+  const handleExport = () => {
+    dispatch(exportStatistic({ skus, shops }))
+  }
   const renderTableSection = () => {
     return (
       stastisicList &&
@@ -37,7 +41,9 @@ function Statistics() {
           <div className={styles.filterContainer}>
             <p
               className={styles.period}
-            >{`Качество прогноза ${stastisicList[0].date_range.split(',').join(" - ")}`}</p>
+            >{`Качество прогноза ${stastisicList[0].date_range
+              .split(",")
+              .join(" - ")}`}</p>
             <label htmlFor="groupBy" className={styles.checkboxLabel}>
               <input
                 type="checkbox"
@@ -49,7 +55,7 @@ function Statistics() {
               Сортировать по ТК
             </label>
           </div>
-          <StatisticTable data={stastisicList} />
+          <StatisticTable data={stastisicList} handleExport={handleExport} />
         </>
       )
     )

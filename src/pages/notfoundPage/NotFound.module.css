@@ -1,0 +1,23 @@
+.container {
+  max-width: 1080px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.img {
+  max-width: 450px;
+  object-fit: contain;
+}
+.infoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+  gap: 75px;
+}
