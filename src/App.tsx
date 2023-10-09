@@ -1,6 +1,5 @@
 import Navbar from "./components/navbar/Navbar"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Orders from "./pages/Orders"
 import Statistics from "./pages/Stratistics"
 import Forecast from "./pages/Forecast"
 import Login from "./pages/loginPage/Login"
@@ -34,14 +33,6 @@ function App() {
           />
           <Route
             path="/forecast"
-            element={
-              <PrivateRoute>
-                <Orders />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/statistics"
             element={
               <PrivateRoute>
                 <Forecast />
