@@ -1,6 +1,6 @@
 # Хакатон Yandex.Practicum x Lenta Frontend
 
-![Интерфейс](image.png)
+![Интерфейс](https://github.com/vitland/lenta-frontend/assets/25207136/359f9653-5c06-4e09-8a80-492cdf695d67)
 
 ## Команда
 - [Виктор Кикодзе](https://github.com/vitland)
