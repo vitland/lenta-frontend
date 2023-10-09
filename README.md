@@ -1,9 +1,10 @@
 # Хакатон Yandex.Practicum x Lenta Frontend
 
-## Команда
+![Интерфейс](image.png)
 
-[Виктор Кикодзе](https://github.com/vitland)
-[Андрей Юрченко](https://github.com/AndreiEth)
+## Команда
+- [Виктор Кикодзе](https://github.com/vitland)
+- [Андрей Юрченко](https://github.com/AndreiEth)
 
 ## Установка и запуск
 
