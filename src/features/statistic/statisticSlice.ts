@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
 import axios from "axios"

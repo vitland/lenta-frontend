@@ -1,12 +1,12 @@
 export const SidebarData = [
   {
     path: "/",
-    name: "Статистика",
+    name: "Прогноз",
     cName: "nav-text",
   },
   {
-    path: "/forecast",
-    name: "Прогноз",
+    path: "/statistics",
+    name: "Статистика",
     cName: "nav-text",
   },
 ]

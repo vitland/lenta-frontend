@@ -24,7 +24,7 @@ function App() {
       <Navbar>
         <Routes>
           <Route
-            path="/"
+            path="/statistics"
             element={
               <PrivateRoute>
                 <Statistics />
@@ -32,7 +32,7 @@ function App() {
             }
           />
           <Route
-            path="/forecast"
+            path="/"
             element={
               <PrivateRoute>
                 <Forecast />
