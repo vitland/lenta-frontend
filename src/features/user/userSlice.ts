@@ -12,12 +12,11 @@ const initialState: UserState = {
 
 export const getUser = createAsyncThunk(
   "user/getUser",
-  async ({ email, password }: any) => {
-    const response = await axios.post(`${BASE_URL}${ApiRoutes.GET_USER}`, {
-      email,
-      password
-    })
-    return response.data
+  async ({id}: any) => {
+    const response = await axios.get<User[]>(`${BASE_URL}${ApiRoutes.GET_USER}`);
+
+    const user = response.data.find((user) => user?.id === id)
+    return user
   },
 )
 
@@ -29,6 +28,7 @@ export const loginUser = createAsyncThunk(
         email,
         password
       })
+      localStorage.setItem('userId', response.data?.user?.id)
       return response.data
     } catch (error: any) {
       return error.message
@@ -38,7 +38,7 @@ export const loginUser = createAsyncThunk(
 )
 export const logoutUser = createAsyncThunk(
   "user/logout",
-  async ({ email, password }: any) => {
+  async ({email, password}: any) => {
     try {
       const response = await axios.post(`${BASE_URL}${ApiRoutes.LOGOUT}`,)
       return response.data
@@ -63,7 +63,7 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLogin = true
-        state.user=action.payload.data
+        state.user = action.payload.data
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLogin = false
@@ -78,6 +78,18 @@ const userSlice = createSlice({
 
       })
       .addCase(logoutUser.rejected, (state, action) => {
+        state.isLogin = false
+        state.error = action.error.message
+      })
+
+      .addCase(getUser.pending, (state, action) => {
+        state.isLogin = true
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLogin = false
+        state.user = action.payload
+      })
+      .addCase(getUser.rejected, (state, action) => {
         state.isLogin = false
         state.error = action.error.message
       })

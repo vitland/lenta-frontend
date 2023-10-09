@@ -1,7 +1,7 @@
 import { MaterialReactTable } from "material-react-table"
 import { type MRT_ColumnDef } from "material-react-table" // If using TypeScript (optional, but recommended)
 import { MRT_Localization_RU } from "material-react-table/locales/ru"
-import {  useMemo,  } from "react"
+import { useEffect, useMemo, useState } from "react"
 import ExportBtn from "../exportBtn/ExportBtn"
 import { StatisticData } from "../../types/types"
 import { useAppSelector } from "../../app/hooks"
@@ -9,10 +9,9 @@ import { selectGrouping } from "../../features/filters/fitltersSlice"
 
 type StatisticTabelProps = {
   data: StatisticData[]
-  handleExport: () => void
 }
 
-const StatisticTable = ({ data, handleExport }: StatisticTabelProps) => {
+const StatisticTable = ({ data }: StatisticTabelProps) => {
   const grouping = useAppSelector(selectGrouping)
 
   const columns = useMemo<MRT_ColumnDef<StatisticData>[]>(
@@ -75,15 +74,16 @@ const StatisticTable = ({ data, handleExport }: StatisticTabelProps) => {
           product_id: !grouping,
         },
       }}
-      renderBottomToolbarCustomActions={() => (
-        <ExportBtn handleExport={handleExport} />
-      )}
+      renderBottomToolbarCustomActions={() => <ExportBtn />}
       enableRowSelection={false} //enable some features
       enableColumnOrdering={false}
       enableColumnFilters={false}
       enablePinning={true}
+      // enableColumnActions={false}
       enableGlobalFilter={false} //turn off a feature
       enableHiding
+      // enablePagination={false}
+      // enableBottomToolbar={false}
       enableTopToolbar={false}
       enableSorting={false}
       enableStickyHeader
@@ -107,10 +107,11 @@ const StatisticTable = ({ data, handleExport }: StatisticTabelProps) => {
           width: "100%",
           maxHeight: "800px",
           border: "none",
-
+          // boxShadow: "none",
         },
       }}
       muiTableHeadCellProps={{
+        // align: "center",
         sx: {
           padding: "10px 0px",
         },
@@ -127,6 +128,7 @@ const StatisticTable = ({ data, handleExport }: StatisticTabelProps) => {
         sx: {
           width: "100%",
           tableLayout: "fixed",
+          // boxShadow: "none",
         },
       }}
       localization={MRT_Localization_RU}

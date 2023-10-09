@@ -12,10 +12,7 @@ import {
 } from "../../features/forecast/forecastSlice"
 
 import { FormEvent } from "react"
-import {
-  selectedShops,
-  selectedSkus,
-} from "../../features/filters/fitltersSlice"
+import { selectedShops, selectedSkus } from "../../features/filters/fitltersSlice"
 import useDate from "../../hooks/useDate"
 function Forecast() {
   const dispatch = useAppDispatch()
@@ -29,12 +26,8 @@ function Forecast() {
     e.preventDefault()
     dispatch(fetchForecast({ skus, shops, date }))
   }
-  const handleExport = () => {
-    dispatch(exportForecast({ skus, shops }))
-  }
-  
+
   const renderTableSection = () => {
-    if (forecastList && forecastList.length === 0) return <h3>Ничего не найдено</h3>
     return (
       forecastList &&
       forecastList.length !== 0 && (
@@ -46,7 +39,7 @@ function Forecast() {
               Object.keys(forecastList[0].forecast).length - 1
             ]
           }`}</p>
-          <ForecastTable data={forecastList} handleExport={handleExport} />
+          <ForecastTable data={forecastList} />
         </>
       )
     )
@@ -64,3 +57,4 @@ function Forecast() {
 }
 
 export default Forecast
+
